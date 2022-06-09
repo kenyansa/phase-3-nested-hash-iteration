@@ -19,15 +19,20 @@ end
 
 def remove_strawberry(contacts)
   # your code here!
-  #there are two methods to achieve this: ----1)directly iterating thruogh the hash 
-  #and identifying the value of 'Freddy Mercury' with contacts["Freddy Mercury"]
+  #to achieve this: ----1)directly iterate thru the hash 
+  #and identify the value of 'Freddy Mercury' with contacts["Freddy Mercury"]
   #----2)iterating through the hash, check for 'Freddy Mercury', check the key 'favorite_ice_cream_flavors'
   # then check is the array had 'strawberry'
   #Method 1
   contacts.each do |person, contact_details_hash|
-    binding.pry
-  end 
-end
+    if person == "Freddy Mercury"
+      contact_details_hash.each do |attribute, data|
+        if attribute == :favorite_ice_cream_flavors # Locate the element we're looking for
+          data.delete_if {|ice_cream| ice_cream == "strawberry"} #Update the hash
+        end
+      end
+    end
+  end
 
 # print the output to the terminal for inspection
 pp remove_strawberry(contacts)
